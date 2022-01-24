@@ -30,15 +30,19 @@ def create_app():
         luke = User(id=1, username='lukestpierre')
         brian = User(id=2, username='brianmiller')
         
-        # Make two tweets
-        tweet1 = Tweet(id=1, text='this is a luke tweet', user=luke)
-        tweet2 = Tweet(id=2, text='this is a brian tweet', user=brian)
+        # Make six tweets
+        tweets = [Tweet(id=1, text='this is a luke tweet1', user=luke),
+                  Tweet(id=2, text='this is a luke tweet3', user=luke),
+                  Tweet(id=3, text='this is a luke tweet4', user=luke),
+                  Tweet(id=4, text='this is a brian tweet5', user=brian),
+                  Tweet(id=5, text='this is a brian tweet7', user=brian),
+                  Tweet(id=6, text='this is a brian tweet8', user=brian)]
         
         # Insert them into the SQLite DB
         DB.session.add(luke)
         DB.session.add(brian)
-        DB.session.add(tweet1)
-        DB.session.add(tweet2)
+        for tweet in tweets:
+            DB.session.add(tweet)
         
         # Commit the DB changes
         DB.session.commit()
