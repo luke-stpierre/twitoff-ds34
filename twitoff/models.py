@@ -12,6 +12,8 @@ class User(DB.Model):
     # ID and Username Columns
     id = DB.Column(DB.BigInteger, primary_key=True, nullable=False)
     username = DB.Column(DB.String, nullable=False)
+    # Newest tweet column
+    newest_tweet_id = DB.Column(DB.BigInteger)
     
     
 class Tweet(DB.Model):
@@ -21,3 +23,5 @@ class Tweet(DB.Model):
     user_id = DB.Column(DB.BigInteger, DB.ForeignKey('user.id'), nullable=False)
     # Set up relationship between tables
     user = DB.relationship('User', backref=DB.backref('tweets'), lazy=True)
+    # Word Embeddings Vector Storage Column
+    vect = DB.Column(DB.PickleType, nullable=False)
